@@ -4,7 +4,7 @@
 void _init_Random() {
   uint16_t x = analogRead(2);
   uint16_t y = analogRead(26);
-  randomSeed((x + 1) * (y + 1));
+  randomSeed((x + 1)*(x + 1) * (y + 1)*(y + 1));
 }
 
 uint8_t random_integer(int min, int max) {

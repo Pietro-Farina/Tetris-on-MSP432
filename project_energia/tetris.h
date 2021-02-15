@@ -5,7 +5,8 @@
 #define MAX_COLUMNS 10
 #define MAX 10
 #define BUFFER_SIZE 101
-#define POINTS_FOR_ROW 10
+#define POINTS_FOR_ROW 30
+#define POINTS_FOR_FASTFALL 8
 #define POINTS_FOR_FALL 1
 
 typedef enum Direction {R, L, D} Direction;
@@ -265,7 +266,7 @@ void update_Tiles(Map* map, int8_t pos[][2]) {
     // modify the tiles I come
     map->int_matrix[new_y][new_x] -= 1;
   }
-  noInterrupts();
+ // noInterrupts()
   for (i = 0; i < map->moving_Piece.nr_tiles; ++i)
   {
     x = map->moving_Piece.tiles[i].x;   
@@ -289,7 +290,7 @@ void update_Tiles(Map* map, int8_t pos[][2]) {
 
     //  UPDATE PIXELS
   }
-  interrupts();
+  // interrupts()
 }
 
 
@@ -831,7 +832,7 @@ void save_bond(Map* map) {
  *  This function will make the piece of a row fall down until they found no sapce, mantaining the shape of the pieces
  *  It bases itself on the id of the pieces.
  */
-void fall_row(Map* map, uint8_t y) {
+void fall_row(Map* map, int8_t y) {
   uint16_t colour;
   int8_t j, max_so_far, previous_id = -1;
   int8_t bond[MAX_COLUMNS];
@@ -853,7 +854,7 @@ void fall_row(Map* map, uint8_t y) {
         }
       }
       if ((max_so_far > y) && ((i + 1 == MAX_COLUMNS) || (previous_id != map->int_matrix[y][i+1]))) { // lazy evaluation otherwise error (overflow in int_matrix)
-        noInterrupts();
+       // noInterrupts()
         for (j = bond[i]; j <= i; j++) {
           colour = map->char_matrix[y][j];
           map->int_matrix[max_so_far][j] = previous_id;
@@ -867,7 +868,7 @@ void fall_row(Map* map, uint8_t y) {
           map->row_occupation[y]--;
           //  UPDATE PIXELS
         }
-        interrupts();
+        // interrupts()
       }
     }
   }
@@ -879,7 +880,7 @@ void fall_row(Map* map, uint8_t y) {
  */
 void delete_row(Map* map, int8_t y) {
   int8_t previous_id = -1;
-  noInterrupts();
+ // noInterrupts()
   for (uint8_t i = 0; i < MAX_COLUMNS; ++i) {
     if (previous_id != map->int_matrix[y][i]) {
       previous_id = map->int_matrix[y][i];
@@ -889,7 +890,7 @@ void delete_row(Map* map, int8_t y) {
     map->char_matrix[y][i] = 0x0000;
     draw_Tile(i, y, 0x0000);
   }
-  interrupts();
+  // interrupts()
   map->row_occupation[y]=0;
   map->points+=POINTS_FOR_ROW;
 }
@@ -955,7 +956,7 @@ uint8_t move_Piece(Map* map, Direction direction) {
           can_move = false;
       }
       if (can_move) {
-        noInterrupts();
+       // noInterrupts()
         for (i = 0; i < nr_tiles; i++) {
           // ottengo coordinate della casella
           x = map->moving_Piece.tiles[i].x;
@@ -992,7 +993,7 @@ uint8_t move_Piece(Map* map, Direction direction) {
           }
         }
         map->moving_Piece.center_x++;
-        interrupts();
+        // interrupts()
       }
     } break;
     case 1: { // L
@@ -1006,7 +1007,7 @@ uint8_t move_Piece(Map* map, Direction direction) {
           can_move = false;
       }
       if (can_move) {
-        noInterrupts();
+       // noInterrupts()
         for (i = 0; i < nr_tiles; i++) {
           // ottengo coordinate della casella
           x = map->moving_Piece.tiles[i].x;
@@ -1043,7 +1044,7 @@ uint8_t move_Piece(Map* map, Direction direction) {
           }
         }
         map->moving_Piece.center_x--;
-        interrupts();
+        // interrupts()
       }
     } break;
     case 2: { // D
@@ -1057,7 +1058,7 @@ uint8_t move_Piece(Map* map, Direction direction) {
           can_move = false;
       }
       if (can_move) {
-        noInterrupts();
+       // noInterrupts()
         for (i = 0; i < nr_tiles; i++) {
           // ottengo coordinate della casella
           x = map->moving_Piece.tiles[i].x;
@@ -1095,7 +1096,7 @@ uint8_t move_Piece(Map* map, Direction direction) {
         }
         map->moving_Piece.center_y++;
         map->points+=POINTS_FOR_FALL;
-        interrupts();
+        // interrupts()
       } else { // cant move, kill the piece
         return kill_Piece(map);
       }
@@ -1103,6 +1104,47 @@ uint8_t move_Piece(Map* map, Direction direction) {
     default: break;
   }
   return 0;
+}
+
+uint8_t choke_Piece(Map* map) {
+  int8_t y_max = -1, y_min = 10;
+  int8_t first, y, i;
+  for (i = 0; i < map->moving_Piece.nr_tiles; i++) {
+    y = map->moving_Piece.tiles[i].y;
+    if (y > y_max)
+      y_max = y;
+    if (y < y_min)
+      y_min = y;
+  }
+
+  // check for bond and save the piece into the matrix (when is it moving is saved as -1)
+  save_bond(map);
+
+  for (i = y_max; i >= y_min; i--) {
+    fall_row(map, i);
+  }
+  map->points += POINTS_FOR_FASTFALL;
+  
+  // check for complete row if so delete row and make upper row falling dowm. Check until nothing is moved for 1 cycle;
+  bool moved = true;
+  while (moved) {
+    moved = false;
+    for (i = 0; i < MAX_COLUMNS; i++) {
+      if (map->row_occupation[i] == 10) {
+        delete_row(map, i);
+        moved = true;
+        first = i;
+      }
+    }
+    if (moved) {
+      for (i = first; i >= 0; i--) {
+        fall_row(map, i);
+      }
+    }
+  }
+
+  // add the new Piece
+  return new_Piece(map, (Shape) 0);
 }
 
 void start_game(Map* map) {

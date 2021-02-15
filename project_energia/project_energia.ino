@@ -29,9 +29,7 @@ uint8_t unfreeze_joystick;
 
 bool just_finished;
 
-
 Map mappa;
-
 
 void _setup_buttons() {
   // No need for INPUT_PULLUP
@@ -59,7 +57,9 @@ void setup() {
   _init_Random();
   _init_Screen();
   _setup_buttons();
+  detachInterrupt(digitalPinToInterrupt(ButtonS1));
   _enter_game();
+  attachInterrupt(digitalPinToInterrupt(ButtonS1), pressed_S1, RISING);
 
   // MSP432 14-bit set to 12-bit
 #if defined(__MSP432P401R__)
@@ -70,7 +70,7 @@ void setup() {
 
 //*/
 void loop() {
-  // put your main code here, to run repeatedly:
+
   if (playing == 0) {
     if (!freezed_joystick) {
       x = map(analogRead(joystickX), 0, 4096, 0, 128);
@@ -81,23 +81,35 @@ void loop() {
       if (y > 126)    y = 126;
 
       if (y > 110) {
-        //noInterrupts();
+
+        TA3CCTL0 = ~BIT4;
+        detachInterrupt(digitalPinToInterrupt(ButtonS1));
         playing = move_Piece(&mappa, (Direction) 2);
-        //interrupts();
+        attachInterrupt(digitalPinToInterrupt(ButtonS1), pressed_S1, RISING );
+        TA3CCTL0 = BIT4;
+
         // FREEZE IT
         freezed_joystick = true;
         unfreeze_joystick = (count + 2) % 4;
       } else if (x > 110) {
-        //noInterrupts();
+
+        TA3CCTL0 = ~BIT4;
+        detachInterrupt(digitalPinToInterrupt(ButtonS1));
         playing = move_Piece(&mappa, (Direction) 0);
-        ///interrupts();
+        attachInterrupt(digitalPinToInterrupt(ButtonS1), pressed_S1, RISING );
+        TA3CCTL0 = BIT4;
+
         // FREEZE IT
         freezed_joystick = true;
         unfreeze_joystick = (count + 2) % 4;
       } else if (x < 20) {
-        //noInterrupts();
+
+        TA3CCTL0 = ~BIT4;
+        detachInterrupt(digitalPinToInterrupt(ButtonS1));
         playing = move_Piece(&mappa, (Direction) 1);
-        //interrupts();
+        attachInterrupt(digitalPinToInterrupt(ButtonS1), pressed_S1, RISING );
+        TA3CCTL0 = BIT4;
+
         // FREEZE IT
         freezed_joystick = true;
         unfreeze_joystick = (count + 2) % 4;
@@ -110,7 +122,6 @@ void loop() {
 }
 
 void _enter_game() {
-  noInterrupts();
   playing = 1;
   count = 0;
   just_finished = false;
@@ -118,30 +129,29 @@ void _enter_game() {
   unfreeze_joystick = 0;
   print_Menu();
   setupTimer(333);
-  TA3CCTL0 = ~BIT4;
-  interrupts();
+  _setup_buttons();
 }
 
 void _start_game() {
-  noInterrupts();
+  detachInterrupt(digitalPinToInterrupt(ButtonS1));
   playing = 0;
   just_finished = true;
   print_Map();
   start_game(&mappa);
   TA3CCTL0 = BIT4;
-  interrupts();
   freezed_S1 = true;
   unfreeze_S1 = 1;
+  attachInterrupt(digitalPinToInterrupt(ButtonS1), pressed_S1, RISING );
 }
 
 void _end_game() {
-  noInterrupts();
+  detachInterrupt(digitalPinToInterrupt(ButtonS1));
+  TA3CCTL0 = ~BIT4;
   playing = 1;
-  count= 0;
+  count = 0;
   change_points(mappa.points);
   print_Menu();
-  TA3CCTL0 = ~BIT4;
-  interrupts();
+  attachInterrupt(digitalPinToInterrupt(ButtonS1), pressed_S1, RISING );
 }
 
 void setupTimer(unsigned Period)
@@ -157,16 +167,19 @@ void setupTimer(unsigned Period)
   // Bit 0: Interrupt (pending) flag : set to zero (initially)
   TA3CTL = 0b0000000100010100;
   TA3CCR0 = Period * 32; // Set TACCR0 = Period (32kHz clock)
-  TA3CCTL0 = BIT4; // Enable interrupts when TAR = TACCR0
+  TA3CCTL0 = ~BIT4; // Enable interrupts when TAR = TACCR0
   // The following places the address of our interrupt service routine in the RAM based interrupt vector table
   // The vector number is 14 + 16  = 30 which is represented by the symbol INT_TA3_0
   Interrupt_registerInterrupt(INT_TA3_0, timerA3ISR);
 }
 
 void pressed_S1() {
+  Serial.println("PRESSED");
   if (playing == 0) {
     if (!freezed_S1) {
+      TA3CCTL0 = ~BIT4;
       rotate_Piece(&mappa);
+      TA3CCTL0 = BIT4;
 
       // freeze it
       freezed_S1 = true;
@@ -179,7 +192,9 @@ void pressed_S1() {
 
 void pressed_S2() {
   if ((playing == 0) && !freezed_S2) {
-    playing = move_Piece(&mappa, (Direction) 2);
+    TA3CCTL0 = ~BIT4;
+    playing = choke_Piece(&mappa);
+    TA3CCTL0 = BIT4;
 
     // freeze it
     freezed_S2 = true;
@@ -190,6 +205,7 @@ void pressed_S2() {
 void timerA3ISR(void) {
   if (playing == 0) {
     if (count >= 3) {
+      noInterrupts();
       playing = move_Piece(&mappa, (Direction) 2);
       count = 0;
     } else {
