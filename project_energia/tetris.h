@@ -66,7 +66,7 @@ bool empty_buffer(Buffer* buffer) {
 }
 
 bool full_buffer(Buffer* buffer) {
-  return (buffer->tail+1) % BUFFER_SIZE == buffer->head;
+  return (buffer->tail + 1) % BUFFER_SIZE == buffer->head;
 }
 
 void add_to_int_buffer(Buffer* buffer, uint8_t value) {
@@ -121,8 +121,8 @@ void initialize_Piece(Piece* piece) {
 }
 
 /*
- *  initialize all field of the Map
- */
+    initialize all field of the Map
+*/
 void initialize_Map(Map* map) {
   for (uint8_t i = 0; i < MAX_COLUMNS; i++) {
     map->row_occupation[i] = 0;
@@ -140,8 +140,8 @@ void initialize_Map(Map* map) {
 //----------------------- FUNCTION FOR HANDLING THE GAME -----------------------//
 
 /*
- *  Overwrite the value with a new Piece. It returns 1 if there is no space for the pieced (gameover), otherwise 0
- */
+    Overwrite the value with a new Piece. It returns 1 if there is no space for the pieced (gameover), otherwise 0
+*/
 uint8_t new_Piece(Map* map, Shape shape) {
   // The piece should be initialized or dead
 
@@ -154,67 +154,67 @@ uint8_t new_Piece(Map* map, Shape shape) {
   // switch case(shape) and assign the right tiles
   switch (map->moving_Piece.shape) {
     case 1: { // I
-      map->moving_Piece.nr_tiles = 3;
-      map->moving_Piece.tiles[0].x = 3;
-      map->moving_Piece.tiles[0].y = 0;
-      map->moving_Piece.tiles[1].x = 4;
-      map->moving_Piece.tiles[1].y = 0;
-      map->moving_Piece.tiles[2].x = 5;
-      map->moving_Piece.tiles[2].y = 0;
-    }; break;
+        map->moving_Piece.nr_tiles = 3;
+        map->moving_Piece.tiles[0].x = 3;
+        map->moving_Piece.tiles[0].y = 0;
+        map->moving_Piece.tiles[1].x = 4;
+        map->moving_Piece.tiles[1].y = 0;
+        map->moving_Piece.tiles[2].x = 5;
+        map->moving_Piece.tiles[2].y = 0;
+      }; break;
     case 2: { // J
-      map->moving_Piece.nr_tiles = 3;
-      map->moving_Piece.tiles[0].x = 4;
-      map->moving_Piece.tiles[0].y = 0;
-      map->moving_Piece.tiles[1].x = 5;
-      map->moving_Piece.tiles[1].y = 0;
-      map->moving_Piece.tiles[2].x = 5;
-      map->moving_Piece.tiles[2].y = 1;
-    }; break;
+        map->moving_Piece.nr_tiles = 3;
+        map->moving_Piece.tiles[0].x = 4;
+        map->moving_Piece.tiles[0].y = 0;
+        map->moving_Piece.tiles[1].x = 5;
+        map->moving_Piece.tiles[1].y = 0;
+        map->moving_Piece.tiles[2].x = 5;
+        map->moving_Piece.tiles[2].y = 1;
+      }; break;
     case 3: { // O
-      map->moving_Piece.nr_tiles = 4;
-      map->moving_Piece.tiles[0].x = 4;
-      map->moving_Piece.tiles[0].y = 0;
-      map->moving_Piece.tiles[1].x = 5;
-      map->moving_Piece.tiles[1].y = 0;
-      map->moving_Piece.tiles[2].x = 4;
-      map->moving_Piece.tiles[2].y = 1;
-      map->moving_Piece.tiles[3].x = 5;
-      map->moving_Piece.tiles[3].y = 1;
-    }break;
+        map->moving_Piece.nr_tiles = 4;
+        map->moving_Piece.tiles[0].x = 4;
+        map->moving_Piece.tiles[0].y = 0;
+        map->moving_Piece.tiles[1].x = 5;
+        map->moving_Piece.tiles[1].y = 0;
+        map->moving_Piece.tiles[2].x = 4;
+        map->moving_Piece.tiles[2].y = 1;
+        map->moving_Piece.tiles[3].x = 5;
+        map->moving_Piece.tiles[3].y = 1;
+      } break;
     case 4: { // S
-      map->moving_Piece.nr_tiles = 4;
-      map->moving_Piece.tiles[0].x = 3;
-      map->moving_Piece.tiles[0].y = 1;
-      map->moving_Piece.tiles[1].x = 4;
-      map->moving_Piece.tiles[1].y = 1;
-      map->moving_Piece.tiles[2].x = 4;
-      map->moving_Piece.tiles[2].y = 0;
-      map->moving_Piece.tiles[3].x = 5;
-      map->moving_Piece.tiles[3].y = 0;
-    }; break;
+        map->moving_Piece.nr_tiles = 4;
+        map->moving_Piece.tiles[0].x = 3;
+        map->moving_Piece.tiles[0].y = 1;
+        map->moving_Piece.tiles[1].x = 4;
+        map->moving_Piece.tiles[1].y = 1;
+        map->moving_Piece.tiles[2].x = 4;
+        map->moving_Piece.tiles[2].y = 0;
+        map->moving_Piece.tiles[3].x = 5;
+        map->moving_Piece.tiles[3].y = 0;
+      }; break;
     case 5: { // Z
-      map->moving_Piece.nr_tiles = 4;
-      map->moving_Piece.tiles[0].x = 3;
-      map->moving_Piece.tiles[0].y = 0;
-      map->moving_Piece.tiles[1].x = 4;
-      map->moving_Piece.tiles[1].y = 0;
-      map->moving_Piece.tiles[2].x = 4;
-      map->moving_Piece.tiles[2].y = 1;
-      map->moving_Piece.tiles[3].x = 5;
-      map->moving_Piece.tiles[3].y = 1;
-    }; break;
+        map->moving_Piece.nr_tiles = 4;
+        map->moving_Piece.tiles[0].x = 3;
+        map->moving_Piece.tiles[0].y = 0;
+        map->moving_Piece.tiles[1].x = 4;
+        map->moving_Piece.tiles[1].y = 0;
+        map->moving_Piece.tiles[2].x = 4;
+        map->moving_Piece.tiles[2].y = 1;
+        map->moving_Piece.tiles[3].x = 5;
+        map->moving_Piece.tiles[3].y = 1;
+      }; break;
     case 6: { // T
-      map->moving_Piece.nr_tiles = 4;
-      map->moving_Piece.tiles[0].x = 3;
-      map->moving_Piece.tiles[0].y = 0;
-      map->moving_Piece.tiles[1].x = 4;
-      map->moving_Piece.tiles[1].y = 0;
-      map->moving_Piece.tiles[2].x = 5;
-      map->moving_Piece.tiles[2].y = 0;
-      map->moving_Piece.tiles[3].x = 4;
-      map->moving_Piece.tiles[3].y = 1;
-    }; break;
+        map->moving_Piece.nr_tiles = 4;
+        map->moving_Piece.tiles[0].x = 3;
+        map->moving_Piece.tiles[0].y = 0;
+        map->moving_Piece.tiles[1].x = 4;
+        map->moving_Piece.tiles[1].y = 0;
+        map->moving_Piece.tiles[2].x = 5;
+        map->moving_Piece.tiles[2].y = 0;
+        map->moving_Piece.tiles[3].x = 4;
+        map->moving_Piece.tiles[3].y = 1;
+      }; break;
     default: break; // ERROR, SHOULD NEVER COME HERE
   }
 
@@ -247,15 +247,15 @@ uint8_t new_Piece(Map* map, Shape shape) {
 }
 
 /*
- * It receive the new position for the tiles and update the piece and the map.
- * pos[] is the array of coordinates: {{x1, y1}, {x2, y2}, ...} which will be replace the ones of the moving Piece.
- */
+   It receive the new position for the tiles and update the piece and the map.
+   pos[] is the array of coordinates: {{x1, y1}, {x2, y2}, ...} which will be replace the ones of the moving Piece.
+*/
 void update_Tiles(Map* map, int8_t pos[][2]) {
   uint16_t colour;
   uint8_t i;
   int8_t x, y, new_x, new_y;
   for (i = 0; i < map->moving_Piece.nr_tiles; ++i) {
-    x = map->moving_Piece.tiles[i].x;   
+    x = map->moving_Piece.tiles[i].x;
     y = map->moving_Piece.tiles[i].y;
     new_x = pos[i][0];
     new_y = pos[i][1];
@@ -266,10 +266,10 @@ void update_Tiles(Map* map, int8_t pos[][2]) {
     // modify the tiles I come
     map->int_matrix[new_y][new_x] -= 1;
   }
- // noInterrupts()
+  // noInterrupts()
   for (i = 0; i < map->moving_Piece.nr_tiles; ++i)
   {
-    x = map->moving_Piece.tiles[i].x;   
+    x = map->moving_Piece.tiles[i].x;
     y = map->moving_Piece.tiles[i].y;
     new_x = pos[i][0];
     new_y = pos[i][1];
@@ -295,10 +295,10 @@ void update_Tiles(Map* map, int8_t pos[][2]) {
 
 
 /*
- *  Check the tiles the rotated Piece would occupy, if empty it rotates, otherwise do nothing
- *  The space involved in the rotation depends on the shape of the piece, if is near to edges and the
- *  number of previous rotation
- */
+    Check the tiles the rotated Piece would occupy, if empty it rotates, otherwise do nothing
+    The space involved in the rotation depends on the shape of the piece, if is near to edges and the
+    number of previous rotation
+*/
 void rotate_Piece(Map* map) {
   int8_t center_x, center_y;
   bool can_move;
@@ -308,104 +308,14 @@ void rotate_Piece(Map* map) {
   switch (map->moving_Piece.shape) {
     case 0: break;
     case 1: { // I
-      // check for edges case
-      if (center_x == 0) {
-        if ((map->int_matrix[center_y][center_x + 1] > 0) || (map->int_matrix[center_y][center_x + 2] > 0))
-          can_move = false;
-        if (can_move) {
-          // move tiles
-          // update map
-          int8_t pos[][2] = {{center_x, center_y}, {(int8_t) (center_x + 1), center_y}, {(int8_t) (center_x + 2), center_y}};
-          update_Tiles(map, pos);
-
-          // update center
-          map->moving_Piece.center_x++;
-          // update rotation
-          map->moving_Piece.nr_rotation++;
-        }
-      } else if (center_x == MAX - 1) {
-        if ((map->int_matrix[center_y][center_x - 1] > 0) || (map->int_matrix[center_y][center_x - 2] > 0))
-          can_move = false;
-        if (can_move) {
-          // move tiles
-          // update map
-          int8_t pos[][2] = {{center_x, center_y}, {(int8_t) (center_x - 1), center_y}, {(int8_t) (center_x - 2), center_y}};
-          update_Tiles(map, pos);
-
-          // update center
-          map->moving_Piece.center_x--;
-          // update rotation
-          map->moving_Piece.nr_rotation++;
-        }
-      } else if (center_y == 0) {
-        if ((map->int_matrix[center_y + 1][center_x] > 0) || (map->int_matrix[center_y + 2][center_x] > 0))
-          can_move = false;
-        if (can_move) {
-          // move tiles
-          // update map
-          int8_t pos[][2] = {{center_x, center_y}, {center_x,(int8_t) (center_y + 1)}, {center_x,(int8_t) (center_y + 2)}};
-          update_Tiles(map, pos);
-
-          // update center
-          map->moving_Piece.center_y++;
-          // update rotation
-          map->moving_Piece.nr_rotation++;
-        }
-      } else if (center_y == MAX - 1) {
-        if ((map->int_matrix[center_y - 1][center_x] > 0) || (map->int_matrix[center_y - 2][center_x] > 0))
-          can_move = false;
-        if (can_move) {
-          // move tiles
-          // update map
-          int8_t pos[][2] = {{center_x, center_y}, {center_x, (int8_t) (center_y - 1)}, {center_x, (int8_t) (center_y - 2)}};
-          update_Tiles(map, pos);
-
-          // update center
-          map->moving_Piece.center_y--;
-          // update rotation
-          map->moving_Piece.nr_rotation++;
-        }
-      } else {  // we are not in an edge situation
-        switch(map->moving_Piece.nr_rotation % 2) {
-          case 0: {
-            if ((map->int_matrix[center_y - 1][center_x] > 0) || (map->int_matrix[center_y + 1][center_x] > 0))
-              can_move = false;
-            if (can_move) {
-              // move tiles
-              // update map
-              int8_t pos[][2] = {{center_x, center_y}, {center_x, (int8_t) (center_y - 1)}, {center_x, (int8_t) (center_y + 1)}};
-              update_Tiles(map, pos);
-
-              // update rotation
-              map->moving_Piece.nr_rotation++;
-            }
-          }; break;
-          case 1: {
-            if ((map->int_matrix[center_y][center_x - 1] > 0) || (map->int_matrix[center_y][center_x + 1] > 0))
-              can_move = false;
-            if (can_move) {
-              // move tiles
-              // update map
-              int8_t pos[][2] = {{center_x, center_y}, {(int8_t) (center_x - 1), center_y}, {(int8_t) (center_x + 1), center_y}};
-              update_Tiles(map, pos);
-
-              // update rotation
-              map->moving_Piece.nr_rotation++;
-            }
-          }; break;
-          default: break; // error
-        }
-      }
-    }; break;
-    case 2: { // J
-      // there are no conflict with edges so we watch only normal case
-      switch (map->moving_Piece.nr_rotation % 4) {
-        case 0: {
-          if (map->int_matrix[center_y + 1][center_x] > 0)
+        // check for edges case
+        if (center_x == 0) {
+          if ((map->int_matrix[center_y][center_x + 1] > 0) || (map->int_matrix[center_y][center_x + 2] > 0))
             can_move = false;
           if (can_move) {
+            // move tiles
             // update map
-            int8_t pos[][2] = {{(int8_t) (center_x + 1), center_y}, {center_x, (int8_t) (center_y + 1)}, {(int8_t) (center_x + 1), (int8_t) (center_y + 1)}};
+            int8_t pos[][2] = {{center_x, center_y}, {(int8_t) (center_x + 1), center_y}, {(int8_t) (center_x + 2), center_y}};
             update_Tiles(map, pos);
 
             // update center
@@ -413,27 +323,13 @@ void rotate_Piece(Map* map) {
             // update rotation
             map->moving_Piece.nr_rotation++;
           }
-        }; break;
-        case 1: {
-          if (map->int_matrix[center_y][center_x - 1] > 0)
+        } else if (center_x == MAX - 1) {
+          if ((map->int_matrix[center_y][center_x - 1] > 0) || (map->int_matrix[center_y][center_x - 2] > 0))
             can_move = false;
           if (can_move) {
+            // move tiles
             // update map
-            int8_t pos[][2] = {{center_x, (int8_t) (center_y + 1)}, {(int8_t) (center_x - 1), (int8_t) (center_y + 1)}, {(int8_t) (center_x - 1), center_y}};
-            update_Tiles(map, pos);
-
-            // update center
-            map->moving_Piece.center_y++;
-            // update rotation
-            map->moving_Piece.nr_rotation++;
-          }
-        }; break;
-        case 2: {
-          if (map->int_matrix[center_y - 1][center_x] > 0)
-            can_move = false;
-          if (can_move) {
-            // update map
-            int8_t pos[][2] = {{(int8_t) (center_x - 1), center_y}, {(int8_t) (center_x - 1), (int8_t) (center_y - 1)}, {center_x, (int8_t) (center_y - 1)}};
+            int8_t pos[][2] = {{center_x, center_y}, {(int8_t) (center_x - 1), center_y}, {(int8_t) (center_x - 2), center_y}};
             update_Tiles(map, pos);
 
             // update center
@@ -441,13 +337,27 @@ void rotate_Piece(Map* map) {
             // update rotation
             map->moving_Piece.nr_rotation++;
           }
-        }; break;
-        case 3: {
-          if (map->int_matrix[center_y][center_x + 1] > 0)
+        } else if (center_y == 0) {
+          if ((map->int_matrix[center_y + 1][center_x] > 0) || (map->int_matrix[center_y + 2][center_x] > 0))
             can_move = false;
           if (can_move) {
+            // move tiles
             // update map
-            int8_t pos[][2] = {{center_x, (int8_t) (center_y - 1)}, {(int8_t) (center_x + 1), (int8_t) (center_y - 1)}, {(int8_t) (center_x + 1), center_y}};
+            int8_t pos[][2] = {{center_x, center_y}, {center_x, (int8_t) (center_y + 1)}, {center_x, (int8_t) (center_y + 2)}};
+            update_Tiles(map, pos);
+
+            // update center
+            map->moving_Piece.center_y++;
+            // update rotation
+            map->moving_Piece.nr_rotation++;
+          }
+        } else if (center_y == MAX - 1) {
+          if ((map->int_matrix[center_y - 1][center_x] > 0) || (map->int_matrix[center_y - 2][center_x] > 0))
+            can_move = false;
+          if (can_move) {
+            // move tiles
+            // update map
+            int8_t pos[][2] = {{center_x, center_y}, {center_x, (int8_t) (center_y - 1)}, {center_x, (int8_t) (center_y - 2)}};
             update_Tiles(map, pos);
 
             // update center
@@ -455,347 +365,437 @@ void rotate_Piece(Map* map) {
             // update rotation
             map->moving_Piece.nr_rotation++;
           }
-        }; break;
-        default: break;
-      }
-    }; break;
+        } else {  // we are not in an edge situation
+          switch (map->moving_Piece.nr_rotation % 2) {
+            case 0: {
+                if ((map->int_matrix[center_y - 1][center_x] > 0) || (map->int_matrix[center_y + 1][center_x] > 0))
+                  can_move = false;
+                if (can_move) {
+                  // move tiles
+                  // update map
+                  int8_t pos[][2] = {{center_x, center_y}, {center_x, (int8_t) (center_y - 1)}, {center_x, (int8_t) (center_y + 1)}};
+                  update_Tiles(map, pos);
+
+                  // update rotation
+                  map->moving_Piece.nr_rotation++;
+                }
+              }; break;
+            case 1: {
+                if ((map->int_matrix[center_y][center_x - 1] > 0) || (map->int_matrix[center_y][center_x + 1] > 0))
+                  can_move = false;
+                if (can_move) {
+                  // move tiles
+                  // update map
+                  int8_t pos[][2] = {{center_x, center_y}, {(int8_t) (center_x - 1), center_y}, {(int8_t) (center_x + 1), center_y}};
+                  update_Tiles(map, pos);
+
+                  // update rotation
+                  map->moving_Piece.nr_rotation++;
+                }
+              }; break;
+            default: break; // error
+          }
+        }
+      }; break;
+    case 2: { // J
+        // there are no conflict with edges so we watch only normal case
+        switch (map->moving_Piece.nr_rotation % 4) {
+          case 0: {
+              if (map->int_matrix[center_y + 1][center_x] > 0)
+                can_move = false;
+              if (can_move) {
+                // update map
+                int8_t pos[][2] = {{(int8_t) (center_x + 1), center_y}, {center_x, (int8_t) (center_y + 1)}, {(int8_t) (center_x + 1), (int8_t) (center_y + 1)}};
+                update_Tiles(map, pos);
+
+                // update center
+                map->moving_Piece.center_x++;
+                // update rotation
+                map->moving_Piece.nr_rotation++;
+              }
+            }; break;
+          case 1: {
+              if (map->int_matrix[center_y][center_x - 1] > 0)
+                can_move = false;
+              if (can_move) {
+                // update map
+                int8_t pos[][2] = {{center_x, (int8_t) (center_y + 1)}, {(int8_t) (center_x - 1), (int8_t) (center_y + 1)}, {(int8_t) (center_x - 1), center_y}};
+                update_Tiles(map, pos);
+
+                // update center
+                map->moving_Piece.center_y++;
+                // update rotation
+                map->moving_Piece.nr_rotation++;
+              }
+            }; break;
+          case 2: {
+              if (map->int_matrix[center_y - 1][center_x] > 0)
+                can_move = false;
+              if (can_move) {
+                // update map
+                int8_t pos[][2] = {{(int8_t) (center_x - 1), center_y}, {(int8_t) (center_x - 1), (int8_t) (center_y - 1)}, {center_x, (int8_t) (center_y - 1)}};
+                update_Tiles(map, pos);
+
+                // update center
+                map->moving_Piece.center_x--;
+                // update rotation
+                map->moving_Piece.nr_rotation++;
+              }
+            }; break;
+          case 3: {
+              if (map->int_matrix[center_y][center_x + 1] > 0)
+                can_move = false;
+              if (can_move) {
+                // update map
+                int8_t pos[][2] = {{center_x, (int8_t) (center_y - 1)}, {(int8_t) (center_x + 1), (int8_t) (center_y - 1)}, {(int8_t) (center_x + 1), center_y}};
+                update_Tiles(map, pos);
+
+                // update center
+                map->moving_Piece.center_y--;
+                // update rotation
+                map->moving_Piece.nr_rotation++;
+              }
+            }; break;
+          default: break;
+        }
+      }; break;
     case 3: { // O
-    }; break;
+      }; break;
     case 4: { // S
-      // check for edges case
-      if (center_x == 0) {
-        if ((map->int_matrix[center_y][center_x + 2] > 0) || (map->int_matrix[center_y + 1][center_x] > 0))
-          can_move = false;
-        if (can_move) {
-          // update map
-          int8_t pos[][2] = {{(int8_t) (center_x + 1), center_y}, {(int8_t) (center_x + 2), center_y}, {center_x, (int8_t) (center_y + 1)}, {(int8_t) (center_x + 1), (int8_t) (center_y + 1)}};
-          update_Tiles(map, pos);
+        // check for edges case
+        if (center_x == 0) {
+          if ((map->int_matrix[center_y][center_x + 2] > 0) || (map->int_matrix[center_y + 1][center_x] > 0))
+            can_move = false;
+          if (can_move) {
+            // update map
+            int8_t pos[][2] = {{(int8_t) (center_x + 1), center_y}, {(int8_t) (center_x + 2), center_y}, {center_x, (int8_t) (center_y + 1)}, {(int8_t) (center_x + 1), (int8_t) (center_y + 1)}};
+            update_Tiles(map, pos);
 
-          // update center
-          map->moving_Piece.center_x++;
-          // update rotation
-          map->moving_Piece.nr_rotation++;
+            // update center
+            map->moving_Piece.center_x++;
+            // update rotation
+            map->moving_Piece.nr_rotation++;
+          }
+        } else if (center_x == MAX - 1) {
+          if ((map->int_matrix[center_y - 1][center_x] > 0) || (map->int_matrix[center_y][center_x - 2] > 0))
+            can_move = false;
+          if (can_move) {
+            // update map
+            int8_t pos[][2] = {{(int8_t) (center_x - 1), center_y}, {(int8_t) (center_x - 2), center_y}, {center_x, (int8_t) (center_y - 1)}, {(int8_t) (center_x - 1), (int8_t) (center_y - 1)}};
+            update_Tiles(map, pos);
+
+            // update center
+            map->moving_Piece.center_x--;
+            // update rotation
+            map->moving_Piece.nr_rotation++;
+          }
+        } else if (center_y == 0) {
+          if ((map->int_matrix[center_y][center_x - 1] > 0) || (map->int_matrix[center_y + 2][center_x] > 0))
+            can_move = false;
+          if (can_move) {
+            // update map
+            int8_t pos[][2] = {{(int8_t) (center_x - 1), center_y}, {center_x, (int8_t) (center_y + 1)}, {(int8_t) (center_x - 1), (int8_t) (center_y + 1)}, {center_x, (int8_t) (center_y + 2)}};
+            update_Tiles(map, pos);
+
+            // update center
+            map->moving_Piece.center_y++;
+            // update rotation
+            map->moving_Piece.nr_rotation++;
+          }
+        } else if (center_y == MAX - 1) {
+          if ((map->int_matrix[center_y][center_x + 1] > 0) || (map->int_matrix[center_y - 2][center_x] > 0))
+            can_move = false;
+          if (can_move) {
+            // update map
+            int8_t pos[][2] = {{center_x, (int8_t) (center_y - 1)}, {center_x, (int8_t) (center_y - 2)}, {(int8_t) (center_x + 1), center_y}, {(int8_t) (center_x + 1), (int8_t) (center_y - 1)}};
+            update_Tiles(map, pos);
+
+            // update center
+            map->moving_Piece.center_y--;
+            // update rotation
+            map->moving_Piece.nr_rotation++;
+          }
+        } else {  // we are not in an edge situation
+          switch (map->moving_Piece.nr_rotation % 4) {
+            case 0: {
+                if ((map->int_matrix[center_y - 1][center_x - 1] > 0) || (map->int_matrix[center_y][center_x - 1] > 0))
+                  can_move = false;
+                if (can_move) {
+                  // update map
+                  int8_t pos[][2] = {{center_x, center_y}, {center_x, (int8_t) (center_y + 1)}, {(int8_t) (center_x - 1), center_y}, {(int8_t) (center_x - 1), (int8_t) (center_y - 1)}};
+                  update_Tiles(map, pos);
+
+                  // update rotation
+                  map->moving_Piece.nr_rotation++;
+                }
+              }; break;
+            case 1: {
+                if ((map->int_matrix[center_y - 1][center_x] > 0) || (map->int_matrix[center_y - 1][center_x + 1] > 0))
+                  can_move = false;
+                if (can_move) {
+                  // update map
+                  int8_t pos[][2] = {{center_x, center_y}, {center_x, (int8_t) (center_y - 1)}, {(int8_t) (center_x + 1), (int8_t) (center_y - 1)}, {(int8_t) (center_x - 1), center_y}};
+                  update_Tiles(map, pos);
+
+                  // update rotation
+                  map->moving_Piece.nr_rotation++;
+                }
+              }; break;
+            case 2: {
+                if ((map->int_matrix[center_y][center_x + 1] > 0) || (map->int_matrix[center_y + 1][center_x + 1] > 0))
+                  can_move = false;
+                if (can_move) {
+                  // update map
+                  int8_t pos[][2] = {{center_x, center_y}, {center_x, (int8_t) (center_y - 1)}, {(int8_t) (center_x + 1), center_y}, {(int8_t) (center_x + 1), (int8_t) (center_y + 1)}};
+                  update_Tiles(map, pos);
+
+                  // update rotation
+                  map->moving_Piece.nr_rotation++;
+                }
+              }; break;
+            case 3: {
+                if ((map->int_matrix[center_y + 1][center_x] > 0) || (map->int_matrix[center_y + 1][center_x - 1] > 0))
+                  can_move = false;
+                if (can_move) {
+                  // update map
+                  int8_t pos[][2] = {{center_x, center_y}, {(int8_t) (center_x + 1), center_y}, {center_x, (int8_t) (center_y + 1)}, {(int8_t) (center_x - 1), (int8_t) (center_y + 1)}};
+                  update_Tiles(map, pos);
+
+                  // update rotation
+                  map->moving_Piece.nr_rotation++;
+                }
+              }; break;
+            default: break; // error
+          }
         }
-      } else if (center_x == MAX - 1) {
-        if ((map->int_matrix[center_y - 1][center_x] > 0) || (map->int_matrix[center_y][center_x - 2] > 0))
-          can_move = false;
-        if (can_move) {
-          // update map
-          int8_t pos[][2] = {{center_x, center_y}, {(int8_t) (center_x - 1), center_y}, {(int8_t) (center_x - 1), (int8_t) (center_y + 1)}, {(int8_t) (center_x - 2), (int8_t) (center_y + 1)}};
-          update_Tiles(map, pos);
-
-          // update center
-          map->moving_Piece.center_x--;
-          // update rotation
-          map->moving_Piece.nr_rotation++;
-        }
-      } else if (center_y == 0) {
-        if ((map->int_matrix[center_y][center_x - 1] > 0) || (map->int_matrix[center_y + 2][center_x] > 0))
-          can_move = false;
-        if (can_move) {
-          // update map
-          int8_t pos[][2] = {{(int8_t) (center_x - 1), center_y}, {center_x, (int8_t) (center_y + 1)}, {(int8_t) (center_x - 1), (int8_t) (center_y + 1)}, {center_x, (int8_t) (center_y + 2)}};
-          update_Tiles(map, pos);
-
-          // update center
-          map->moving_Piece.center_y++;
-          // update rotation
-          map->moving_Piece.nr_rotation++;
-        }
-      } else if (center_y == MAX - 1) {
-        if ((map->int_matrix[center_y][center_x + 1] > 0) || (map->int_matrix[center_y - 2][center_x] > 0))
-          can_move = false;
-        if (can_move) {
-          // update map
-          int8_t pos[][2] = {{center_x, (int8_t) (center_y - 1)}, {center_x, (int8_t) (center_y - 2)}, {(int8_t) (center_x + 1), center_y}, {(int8_t) (center_x + 1), (int8_t) (center_y - 1)}};
-          update_Tiles(map, pos);
-
-          // update center
-          map->moving_Piece.center_y--;
-          // update rotation
-          map->moving_Piece.nr_rotation++;
-        }
-      } else {  // we are not in an edge situation
-        switch(map->moving_Piece.nr_rotation % 4) {
-          case 0: {
-            if ((map->int_matrix[center_y - 1][center_x - 1] > 0) || (map->int_matrix[center_y][center_x - 1] > 0))
-              can_move = false;
-            if (can_move) {
-              // update map
-              int8_t pos[][2] = {{center_x, center_y}, {center_x, (int8_t) (center_y + 1)}, {(int8_t) (center_x - 1), center_y}, {(int8_t) (center_x - 1), (int8_t) (center_y - 1)}};
-              update_Tiles(map, pos);
-
-              // update rotation
-              map->moving_Piece.nr_rotation++;
-            }
-          }; break;
-          case 1: {
-            if ((map->int_matrix[center_y - 1][center_x] > 0) || (map->int_matrix[center_y - 1][center_x + 1] > 0))
-              can_move = false;
-            if (can_move) {
-              // update map
-              int8_t pos[][2] = {{center_x, center_y}, {center_x, (int8_t) (center_y - 1)}, {(int8_t) (center_x + 1), (int8_t) (center_y - 1)}, {(int8_t) (center_x - 1), center_y}};
-              update_Tiles(map, pos);
-
-              // update rotation
-              map->moving_Piece.nr_rotation++;
-            }
-          }; break;
-          case 2: {
-            if ((map->int_matrix[center_y][center_x + 1] > 0) || (map->int_matrix[center_y + 1][center_x + 1] > 0))
-              can_move = false;
-            if (can_move) {
-              // update map
-              int8_t pos[][2] = {{center_x, center_y}, {center_x, (int8_t) (center_y - 1)}, {(int8_t) (center_x + 1), center_y}, {(int8_t) (center_x + 1), (int8_t) (center_y + 1)}};
-              update_Tiles(map, pos);
-
-              // update rotation
-              map->moving_Piece.nr_rotation++;
-            }
-          }; break;
-          case 3: {
-            if ((map->int_matrix[center_y + 1][center_x] > 0) || (map->int_matrix[center_y + 1][center_x - 1] > 0))
-              can_move = false;
-            if (can_move) {
-              // update map
-              int8_t pos[][2] = {{center_x, center_y}, {(int8_t) (center_x + 1), center_y}, {center_x, (int8_t) (center_y + 1)}, {(int8_t) (center_x - 1), (int8_t) (center_y + 1)}};
-              update_Tiles(map, pos);
-
-              // update rotation
-              map->moving_Piece.nr_rotation++;
-            }
-          }; break;
-          default: break; // error
-        }
-      }
-    }; break;
+      }; break;
     case 5: { // Z
-      // check for edges case
-      if (center_x == 0) {
-        if ((map->int_matrix[center_y + 1][center_x + 1] > 0) || (map->int_matrix[center_y + 1][center_x + 2] > 0))
-          can_move = false;
-        if (can_move) {
-          // update map
-          int8_t pos[][2] = {{center_x, center_y}, {(int8_t) (center_x + 1), center_y}, {(int8_t) (center_x + 1), (int8_t) (center_y + 1)}, {(int8_t) (center_x + 2), (int8_t) (center_y + 1)}};
-          update_Tiles(map, pos);
+        // check for edges case
+        if (center_x == 0) {
+          if ((map->int_matrix[center_y + 1][center_x + 1] > 0) || (map->int_matrix[center_y + 1][center_x + 2] > 0))
+            can_move = false;
+          if (can_move) {
+            // update map
+            int8_t pos[][2] = {{center_x, center_y}, {(int8_t) (center_x + 1), center_y}, {(int8_t) (center_x + 1), (int8_t) (center_y + 1)}, {(int8_t) (center_x + 2), (int8_t) (center_y + 1)}};
+            update_Tiles(map, pos);
 
-          // update center
-          map->moving_Piece.center_x++;
-          // update rotation
-          map->moving_Piece.nr_rotation++;
+            // update center
+            map->moving_Piece.center_x++;
+            // update rotation
+            map->moving_Piece.nr_rotation++;
+          }
+        } else if (center_x == MAX - 1) {
+          if ((map->int_matrix[center_y - 1][center_x - 1] > 0) || (map->int_matrix[center_y - 1][center_x - 2] > 0))
+            can_move = false;
+          if (can_move) {
+            // update map
+            int8_t pos[][2] = {{center_x, center_y}, {(int8_t) (center_x - 1), center_y}, {(int8_t) (center_x - 1), (int8_t) (center_y - 1)}, {(int8_t) (center_x - 2), (int8_t) (center_y - 1)}};
+            update_Tiles(map, pos);
+
+            // update center
+            map->moving_Piece.center_x--;
+            // update rotation
+            map->moving_Piece.nr_rotation++;
+          }
+        } else if (center_y == 0) {
+          if ((map->int_matrix[center_y + 1][center_x - 1] > 0) || (map->int_matrix[center_y + 2][center_x - 1] > 0))
+            can_move = false;
+          if (can_move) {
+            // update map
+            int8_t pos[][2] = {{center_x, center_y}, {center_x, (int8_t) (center_y + 1)}, {(int8_t) (center_x - 1), (int8_t) (center_y + 1)}, {(int8_t) (center_x - 1), (int8_t) (center_y + 2)}};
+            update_Tiles(map, pos);
+
+            // update center
+            map->moving_Piece.center_y++;
+            // update rotation
+            map->moving_Piece.nr_rotation++;
+          }
+        } else if (center_y == MAX - 1) {
+          if ((map->int_matrix[center_y - 1][center_x + 1] > 0) || (map->int_matrix[center_y - 2][center_x + 1] > 0))
+            can_move = false;
+          if (can_move) {
+            // update map
+            int8_t pos[][2] = {{center_x, center_y}, {center_x, (int8_t) (center_y - 1)}, {(int8_t) (center_x + 1), (int8_t) (center_y - 1)}, {(int8_t) (center_x + 1), (int8_t) (center_y - 2)}};
+            update_Tiles(map, pos);
+
+            // update center
+            map->moving_Piece.center_y--;
+            // update rotation
+            map->moving_Piece.nr_rotation++;
+          }
+        } else {  // we are not in an edge situation
+          switch (map->moving_Piece.nr_rotation % 4) {
+            case 0: {
+                if ((map->int_matrix[center_y - 1][center_x] > 0) || (map->int_matrix[center_y + 1][center_x - 1] > 0))
+                  can_move = false;
+                if (can_move) {
+                  // update map
+                  int8_t pos[][2] = {{center_x, center_y}, {(int8_t) (center_x - 1), (int8_t) (center_y)}, {(int8_t) (center_x - 1), (int8_t) (center_y + 1)}, {center_x, (int8_t) (center_y - 1)}};
+                  update_Tiles(map, pos);
+
+                  // update rotation
+                  map->moving_Piece.nr_rotation++;
+                }
+              }; break;
+            case 1: {
+                if ((map->int_matrix[center_y - 1][center_x - 1] > 0) || (map->int_matrix[center_y][center_x + 1] > 0))
+                  can_move = false;
+                if (can_move) {
+                  // update map
+                  int8_t pos[][2] = {{center_x, center_y}, {(int8_t) (center_x - 1), (int8_t) (center_y - 1)}, {center_x, (int8_t) (center_y - 1)}, {(int8_t) (center_x + 1), center_y}};
+                  update_Tiles(map, pos);
+
+                  // update rotation
+                  map->moving_Piece.nr_rotation++;
+                }
+              }; break;
+            case 2: {
+                if ((map->int_matrix[center_y - 1][center_x + 1] > 0) || (map->int_matrix[center_y + 1][center_x] > 0))
+                  can_move = false;
+                if (can_move) {
+                  // update map
+                  int8_t pos[][2] = {{center_x, center_y}, {(int8_t) (center_x + 1), (int8_t) (center_y - 1)}, {(int8_t) (center_x + 1), center_y}, {center_x, (int8_t) (center_y + 1)}};
+                  update_Tiles(map, pos);
+
+                  // update rotation
+                  map->moving_Piece.nr_rotation++;
+                }
+              }; break;
+            case 3: {
+                if ((map->int_matrix[center_y][center_x - 1] > 0) || (map->int_matrix[center_y + 1][center_x + 1] > 0))
+                  can_move = false;
+                if (can_move) {
+                  // update map
+                  int8_t pos[][2] = {{center_x, center_y}, {(int8_t) (center_x - 1), center_y}, {center_x, (int8_t) (center_y + 1)}, {(int8_t) (center_x + 1), (int8_t) (center_y + 1)}};
+                  update_Tiles(map, pos);
+
+                  // update rotation
+                  map->moving_Piece.nr_rotation++;
+                }
+              }; break;
+            default: break; // error
+          }
         }
-      } else if (center_x == MAX - 1) {
-        if ((map->int_matrix[center_y - 1][center_x -1] > 0) || (map->int_matrix[center_y - 1][center_x - 2] > 0))
-          can_move = false;
-        if (can_move) {
-          // update map
-          int8_t pos[][2] = {{center_x, center_y}, {(int8_t) (center_x - 1), center_y}, {(int8_t) (center_x - 1), (int8_t) (center_y - 1)}, {(int8_t) (center_x - 2), (int8_t) (center_y - 1)}};
-          update_Tiles(map, pos);
-
-          // update center
-          map->moving_Piece.center_x--;
-          // update rotation
-          map->moving_Piece.nr_rotation++;
-        }
-      } else if (center_y == 0) {
-        if ((map->int_matrix[center_y + 1][center_x - 1] > 0) || (map->int_matrix[center_y + 2][center_x - 1] > 0))
-          can_move = false;
-        if (can_move) {
-          // update map
-          int8_t pos[][2] = {{center_x, center_y}, {center_x, (int8_t) (center_y + 1)}, {(int8_t) (center_x - 1), (int8_t) (center_y + 1)}, {(int8_t) (center_x - 1), (int8_t) (center_y + 2)}};
-          update_Tiles(map, pos);
-
-          // update center
-          map->moving_Piece.center_y++;
-          // update rotation
-          map->moving_Piece.nr_rotation++;
-        }
-      } else if (center_y == MAX - 1) {
-        if ((map->int_matrix[center_y - 1][center_x + 1] > 0) || (map->int_matrix[center_y - 2][center_x + 1] > 0))
-          can_move = false;
-        if (can_move) {
-          // update map
-          int8_t pos[][2] = {{center_x, center_y}, {center_x, (int8_t) (center_y - 1)}, {(int8_t) (center_x + 1), (int8_t) (center_y - 1)}, {(int8_t) (center_x + 1), (int8_t) (center_y - 2)}};
-          update_Tiles(map, pos);
-
-          // update center
-          map->moving_Piece.center_y--;
-          // update rotation
-          map->moving_Piece.nr_rotation++;
-        }
-      } else {  // we are not in an edge situation
-        switch(map->moving_Piece.nr_rotation % 4) {
-          case 0: {
-            if ((map->int_matrix[center_y - 1][center_x] > 0) || (map->int_matrix[center_y + 1][center_x - 1] > 0))
-              can_move = false;
-            if (can_move) {
-              // update map
-              int8_t pos[][2] = {{center_x, center_y}, {(int8_t) (center_x - 1), (int8_t) (center_y)}, {(int8_t) (center_x - 1), (int8_t) (center_y + 1)}, {center_x, (int8_t) (center_y - 1)}};
-              update_Tiles(map, pos);
-
-              // update rotation
-              map->moving_Piece.nr_rotation++;
-            }
-          }; break;
-          case 1: {
-            if ((map->int_matrix[center_y - 1][center_x - 1] > 0) || (map->int_matrix[center_y][center_x + 1] > 0))
-              can_move = false;
-            if (can_move) {
-              // update map
-              int8_t pos[][2] = {{center_x, center_y}, {(int8_t) (center_x - 1), (int8_t) (center_y - 1)}, {center_x, (int8_t) (center_y - 1)}, {(int8_t) (center_x + 1), center_y}};
-              update_Tiles(map, pos);
-
-              // update rotation
-              map->moving_Piece.nr_rotation++;
-            }
-          }; break;
-          case 2: {
-            if ((map->int_matrix[center_y - 1][center_x + 1] > 0) || (map->int_matrix[center_y + 1][center_x] > 0))
-              can_move = false;
-            if (can_move) {
-              // update map
-              int8_t pos[][2] = {{center_x, center_y}, {(int8_t) (center_x + 1), (int8_t) (center_y - 1)}, {(int8_t) (center_x + 1), center_y}, {center_x, (int8_t) (center_y + 1)}};
-              update_Tiles(map, pos);
-
-              // update rotation
-              map->moving_Piece.nr_rotation++;
-            }
-          }; break;
-          case 3: {
-            if ((map->int_matrix[center_y][center_x - 1] > 0) || (map->int_matrix[center_y + 1][center_x + 1] > 0))
-              can_move = false;
-            if (can_move) {
-              // update map
-              int8_t pos[][2] = {{center_x, center_y}, {(int8_t) (center_x - 1), center_y}, {center_x, (int8_t) (center_y + 1)}, {(int8_t) (center_x + 1), (int8_t) (center_y + 1)}};
-              update_Tiles(map, pos);
-
-              // update rotation
-              map->moving_Piece.nr_rotation++;
-            }
-          }; break;
-          default: break; // error
-        }
-      }
-    }; break;
+      }; break;
     case 6: { // T
-      // check for edges case
-      if (center_x == 0) {
-        if ((map->int_matrix[center_y][center_x + 2] > 0) || (map->int_matrix[center_y + 1][center_x + 1] > 0))
-          can_move = false;
-        if (can_move) {
-          // update map
-          int8_t pos[][2] = {{center_x, center_y}, {(int8_t) (center_x + 1), center_y}, {(int8_t) (center_x + 1), (int8_t) (center_y + 1)}, {(int8_t) (center_x + 2), center_y}};
-          update_Tiles(map, pos);
+        // check for edges case
+        if (center_x == 0) {
+          if ((map->int_matrix[center_y][center_x + 2] > 0) || (map->int_matrix[center_y + 1][center_x + 1] > 0))
+            can_move = false;
+          if (can_move) {
+            // update map
+            int8_t pos[][2] = {{center_x, center_y}, {(int8_t) (center_x + 1), center_y}, {(int8_t) (center_x + 1), (int8_t) (center_y + 1)}, {(int8_t) (center_x + 2), center_y}};
+            update_Tiles(map, pos);
 
-          // update center
-          map->moving_Piece.center_x++;
-          // update rotation
-          map->moving_Piece.nr_rotation++;
+            // update center
+            map->moving_Piece.center_x++;
+            // update rotation
+            map->moving_Piece.nr_rotation++;
+          }
+        } else if (center_x == MAX - 1) {
+          if ((map->int_matrix[center_y - 1][center_x - 1] > 0) || (map->int_matrix[center_y][center_x - 2] > 0))
+            can_move = false;
+          if (can_move) {
+            // update map
+            int8_t pos[][2] = {{center_x, center_y}, {(int8_t) (center_x - 1), center_y}, {(int8_t) (center_x - 1), (int8_t) (center_y - 1)}, {(int8_t) (center_x - 2), center_y}};
+            update_Tiles(map, pos);
+
+            // update center
+            map->moving_Piece.center_x--;
+            // update rotation
+            map->moving_Piece.nr_rotation++;
+          }
+        } else if (center_y == 0) {
+          if ((map->int_matrix[center_y + 1][center_x - 1] > 0) || (map->int_matrix[center_y + 2][center_x] > 0))
+            can_move = false;
+          if (can_move) {
+            // update map
+            int8_t pos[][2] = {{center_x, center_y}, {center_x, (int8_t) (center_y + 1)}, {center_x, (int8_t) (center_y + 2)}, {(int8_t) (center_x - 1), (int8_t) (center_y + 1)}};
+            update_Tiles(map, pos);
+
+            // update center
+            map->moving_Piece.center_y++;
+            // update rotation
+            map->moving_Piece.nr_rotation++;
+          }
+        } else if (center_y == MAX - 1) {
+          if ((map->int_matrix[center_y - 1][center_x + 1] > 0) || (map->int_matrix[center_y - 2][center_x] > 0))
+            can_move = false;
+          if (can_move) {
+            // update map
+            int8_t pos[][2] = {{center_x, center_y}, {center_x, (int8_t) (center_y - 1)}, {center_x, (int8_t) (center_y - 2)}, {(int8_t) (center_x + 1), (int8_t) (center_y - 1)}};
+            update_Tiles(map, pos);
+
+            // update center
+            map->moving_Piece.center_y--;
+            // update rotation
+            map->moving_Piece.nr_rotation++;
+          }
+        } else {  // we are not in an edge situation
+          switch (map->moving_Piece.nr_rotation % 4) {
+            case 0: {
+                if (map->int_matrix[center_y - 1][center_x] > 0)
+                  can_move = false;
+                if (can_move) {
+                  // update map
+                  int8_t pos[][2] = {{center_x, center_y}, {(int8_t) (center_x - 1), center_y}, {center_x, (int8_t) (center_y + 1)}, {center_x, (int8_t) (center_y - 1)}};
+                  update_Tiles(map, pos);
+
+                  // update rotation
+                  map->moving_Piece.nr_rotation++;
+                }
+              }; break;
+            case 1: {
+                if (map->int_matrix[center_y][center_x + 1] > 0)
+                  can_move = false;
+                if (can_move) {
+                  // update map
+                  int8_t pos[][2] = {{center_x, center_y}, {(int8_t) (center_x + 1), center_y}, {(int8_t) (center_x - 1), center_y}, {center_x, (int8_t) (center_y - 1)}};
+                  update_Tiles(map, pos);
+
+                  // update rotation
+                  map->moving_Piece.nr_rotation++;
+                }
+              }; break;
+            case 2: {
+                if (map->int_matrix[center_y + 1][center_x] > 0)
+                  can_move = false;
+                if (can_move) {
+                  // update map
+                  int8_t pos[][2] = {{center_x, center_y}, {(int8_t) (center_x + 1), center_y}, {center_x, (int8_t) (center_y - 1)}, {center_x, (int8_t) (center_y + 1)}};
+                  update_Tiles(map, pos);
+
+                  // update rotation
+                  map->moving_Piece.nr_rotation++;
+                }
+              }; break;
+            case 3: {
+                if (map->int_matrix[center_y][center_x - 1] > 0)
+                  can_move = false;
+                if (can_move) {
+                  // update map
+                  int8_t pos[][2] = {{center_x, center_y}, {(int8_t) (center_x - 1), center_y}, {(int8_t) (center_x + 1), center_y}, {center_x, (int8_t) (center_y + 1)}};
+                  update_Tiles(map, pos);
+
+                  // update rotation
+                  map->moving_Piece.nr_rotation++;
+                }
+              }; break;
+            default: break; // error
+          }
         }
-      } else if (center_x == MAX - 1) {
-        if ((map->int_matrix[center_y - 1][center_x - 1] > 0) || (map->int_matrix[center_y][center_x - 2] > 0))
-          can_move = false;
-        if (can_move) {
-          // update map
-          int8_t pos[][2] = {{center_x, center_y}, {(int8_t) (center_x - 1), center_y}, {(int8_t) (center_x - 1), (int8_t) (center_y - 1)}, {(int8_t) (center_x - 2), center_y}};
-          update_Tiles(map, pos);
-
-          // update center
-          map->moving_Piece.center_x--;
-          // update rotation
-          map->moving_Piece.nr_rotation++;
-        }
-      } else if (center_y == 0) {
-        if ((map->int_matrix[center_y + 1][center_x - 1] > 0) || (map->int_matrix[center_y + 2][center_x] > 0))
-          can_move = false;
-        if (can_move) {
-          // update map
-          int8_t pos[][2] = {{center_x, center_y}, {center_x, (int8_t) (center_y + 1)}, {center_x, (int8_t) (center_y + 2)}, {(int8_t) (center_x - 1), (int8_t) (center_y + 1)}};
-          update_Tiles(map, pos);
-
-          // update center
-          map->moving_Piece.center_y++;
-          // update rotation
-          map->moving_Piece.nr_rotation++;
-        }
-      } else if (center_y == MAX - 1) {
-        if ((map->int_matrix[center_y - 1][center_x + 1] > 0) || (map->int_matrix[center_y - 2][center_x] > 0))
-          can_move = false;
-        if (can_move) {
-          // update map
-          int8_t pos[][2] = {{center_x, center_y}, {center_x, (int8_t) (center_y - 1)}, {center_x, (int8_t) (center_y - 2)}, {(int8_t) (center_x + 1), (int8_t) (center_y - 1)}};
-          update_Tiles(map, pos);
-
-          // update center
-          map->moving_Piece.center_y--;
-          // update rotation
-          map->moving_Piece.nr_rotation++;
-        }
-      } else {  // we are not in an edge situation
-        switch(map->moving_Piece.nr_rotation % 4) {
-          case 0: {
-            if (map->int_matrix[center_y - 1][center_x] > 0)
-              can_move = false;
-            if (can_move) {
-              // update map
-              int8_t pos[][2] = {{center_x, center_y}, {(int8_t) (center_x - 1), center_y}, {center_x, (int8_t) (center_y + 1)}, {center_x, (int8_t) (center_y - 1)}};
-              update_Tiles(map, pos);
-
-              // update rotation
-              map->moving_Piece.nr_rotation++;
-            }
-          }; break;
-          case 1: {
-            if (map->int_matrix[center_y][center_x + 1] > 0)
-              can_move = false;
-            if (can_move) {
-              // update map
-              int8_t pos[][2] = {{center_x, center_y}, {(int8_t) (center_x + 1), center_y}, {(int8_t) (center_x - 1), center_y}, {center_x, (int8_t) (center_y - 1)}};
-              update_Tiles(map, pos);
-
-              // update rotation
-              map->moving_Piece.nr_rotation++;
-            }
-          }; break;
-          case 2: {
-            if (map->int_matrix[center_y + 1][center_x] > 0)
-              can_move = false;
-            if (can_move) {
-              // update map
-              int8_t pos[][2] = {{center_x, center_y}, {(int8_t) (center_x + 1), center_y}, {center_x, (int8_t) (center_y - 1)}, {center_x, (int8_t) (center_y + 1)}};
-              update_Tiles(map, pos);
-
-              // update rotation
-              map->moving_Piece.nr_rotation++;
-            }
-          }; break;
-          case 3: {
-            if (map->int_matrix[center_y][center_x - 1] > 0)
-              can_move = false;
-            if (can_move) {
-              // update map
-              int8_t pos[][2] = {{center_x, center_y}, {(int8_t) (center_x - 1), center_y}, {(int8_t) (center_x + 1), center_y}, {center_x, (int8_t) (center_y + 1)}};
-              update_Tiles(map, pos);
-
-              // update rotation
-              map->moving_Piece.nr_rotation++;
-            }
-          }; break;
-          default: break; // error
-        }
-      }
-    }; break;
+      }; break;
     default: break;
   }
 }
 
 /*
- *  This function assign an id to the last moving piece. The id are assigned horizontally, e.g.:
- *  [ id1 ]
- *  [ id2 ] [ id2 ]
- *          [ id3 ] [ id3 ] [ id3 ]
- *  In this way, once the piece fall down it mantains his shape
- */
+    This function assign an id to the last moving piece. The id are assigned horizontally, e.g.:
+    [ id1 ]
+    [ id2 ] [ id2 ]
+            [ id3 ] [ id3 ] [ id3 ]
+    In this way, once the piece fall down it mantains his shape
+*/
 void save_bond(Map* map) {
   int8_t x, y, y1, y2, y3, id1, id2, id3;
   y1 = map->moving_Piece.tiles[0].y;
@@ -829,9 +829,9 @@ void save_bond(Map* map) {
 }
 
 /*
- *  This function will make the piece of a row fall down until they found no sapce, mantaining the shape of the pieces
- *  It bases itself on the id of the pieces.
- */
+    This function will make the piece of a row fall down until they found no sapce, mantaining the shape of the pieces
+    It bases itself on the id of the pieces.
+*/
 void fall_row(Map* map, int8_t y) {
   uint16_t colour;
   int8_t j, max_so_far, previous_id = -1;
@@ -839,7 +839,7 @@ void fall_row(Map* map, int8_t y) {
   for (int i = 0; i < MAX_COLUMNS; ++i) {
     if (map->int_matrix[y][i] != 0) {
       if (map->int_matrix[y][i] == previous_id) {
-        bond[i] = bond[i-1];
+        bond[i] = bond[i - 1];
         for (j = y + 1; j <= max_so_far; ++j) {
           if (map->int_matrix[j][i] != 0)
             max_so_far = j - 1;
@@ -853,8 +853,8 @@ void fall_row(Map* map, int8_t y) {
             max_so_far = j - 1;
         }
       }
-      if ((max_so_far > y) && ((i + 1 == MAX_COLUMNS) || (previous_id != map->int_matrix[y][i+1]))) { // lazy evaluation otherwise error (overflow in int_matrix)
-       // noInterrupts()
+      if ((max_so_far > y) && ((i + 1 == MAX_COLUMNS) || (previous_id != map->int_matrix[y][i + 1]))) { // lazy evaluation otherwise error (overflow in int_matrix)
+        // noInterrupts()
         for (j = bond[i]; j <= i; j++) {
           colour = map->char_matrix[y][j];
           map->int_matrix[max_so_far][j] = previous_id;
@@ -864,7 +864,7 @@ void fall_row(Map* map, int8_t y) {
 
           map->int_matrix[y][j] = 0;
           map->char_matrix[y][j] = 0x0000;
-           draw_Tile(j, y, 0x0000);
+          draw_Tile(j, y, 0x0000);
           map->row_occupation[y]--;
           //  UPDATE PIXELS
         }
@@ -875,12 +875,12 @@ void fall_row(Map* map, int8_t y) {
 }
 
 /*
- *  Delete all the piece on a row and return give their id to the avaible_id buffer (Because they are avaible now)
- *  Give points to the user.
- */
+    Delete all the piece on a row and return give their id to the avaible_id buffer (Because they are avaible now)
+    Give points to the user.
+*/
 void delete_row(Map* map, int8_t y) {
   int8_t previous_id = -1;
- // noInterrupts()
+  // noInterrupts()
   for (uint8_t i = 0; i < MAX_COLUMNS; ++i) {
     if (previous_id != map->int_matrix[y][i]) {
       previous_id = map->int_matrix[y][i];
@@ -891,13 +891,13 @@ void delete_row(Map* map, int8_t y) {
     draw_Tile(i, y, 0x0000);
   }
   // interrupts()
-  map->row_occupation[y]=0;
-  map->points+=POINTS_FOR_ROW;
+  map->row_occupation[y] = 0;
+  map->points += POINTS_FOR_ROW;
 }
 
 /*
- *  Save the moving Piece as a static Piece, check for complete row and create the new Piece. If the creation of the Piece fail it returns 1, otherwise 0
- */
+    Save the moving Piece as a static Piece, check for complete row and create the new Piece. If the creation of the Piece fail it returns 1, otherwise 0
+*/
 uint8_t kill_Piece(Map* map) {
   // check for bond and save the piece into the matrix (when is it moving is saved as -1)
   save_bond(map);
@@ -926,17 +926,17 @@ uint8_t kill_Piece(Map* map) {
 }
 
 /*
- *  Given the map and a direction, it moves the moving piece to the direction provided if it can actually move amd returns 0.
- *  If it can not move it does nothing and returns 0, except if the direction is down. In that case it call kill_Piece() (which return 1 if the game ended, 0 otherwise)
- *
- *  For every direction it watches the tiles the piece would occupy, if are empty the piece cannot move, else it can move it.
- *  When moving the piece in the int matrix, the final tiles have -1 id, and the lefted ones have +1 id, in this way we avoid overwriting the movement. For the char
- *  matrix instead we mantain the area of the movement (defined with x_min, x_max, y_min, y_max) and read in that area the id of the tiles, when is 0 we have to change it to
- *  no colour, when is -1 it means the piece is there and we have to paint the cell with his colours.
- *  
- *  The differences between this function are that update_Tiles are in the check of the space (update_Tiles does not do it) and 
- *  move_Piece does not need an array of support, instead uses min and max values to know where to check changes of colour
- */
+    Given the map and a direction, it moves the moving piece to the direction provided if it can actually move amd returns 0.
+    If it can not move it does nothing and returns 0, except if the direction is down. In that case it call kill_Piece() (which return 1 if the game ended, 0 otherwise)
+
+    For every direction it watches the tiles the piece would occupy, if are empty the piece cannot move, else it can move it.
+    When moving the piece in the int matrix, the final tiles have -1 id, and the lefted ones have +1 id, in this way we avoid overwriting the movement. For the char
+    matrix instead we mantain the area of the movement (defined with x_min, x_max, y_min, y_max) and read in that area the id of the tiles, when is 0 we have to change it to
+    no colour, when is -1 it means the piece is there and we have to paint the cell with his colours.
+
+    The differences between this function are that update_Tiles are in the check of the space (update_Tiles does not do it) and
+    move_Piece does not need an array of support, instead uses min and max values to know where to check changes of colour
+*/
 uint8_t move_Piece(Map* map, Direction direction) {
   bool can_move = true;
   int8_t x, y, x_max = -1, x_min = 100, y_max = -1, y_min = 100;
@@ -946,205 +946,237 @@ uint8_t move_Piece(Map* map, Direction direction) {
   colour = map->moving_Piece.colour;
   switch (direction) {
     case 0: { // R
-      // check if we can move
-      for (i = 0; i < nr_tiles; ++i) {
-        x = map->moving_Piece.tiles[i].x + 1;
-        y = map->moving_Piece.tiles[i].y;
-        if (x == MAX)
-          can_move = false;
-        else if (map->int_matrix[y][x] > 0)
-          can_move = false;
-      }
-      if (can_move) {
-       // noInterrupts()
-        for (i = 0; i < nr_tiles; i++) {
-          // ottengo coordinate della casella
-          x = map->moving_Piece.tiles[i].x;
+        // check if we can move
+        for (i = 0; i < nr_tiles; ++i) {
+          x = map->moving_Piece.tiles[i].x + 1;
           y = map->moving_Piece.tiles[i].y;
-
-          // muovo caselle di Piece
-          map->moving_Piece.tiles[i].x++;
-
-          // muovo valori di int_matrix (sottraggo e aggiungo per modificare i valori per non sovrascrivere)
-          map->int_matrix[y][x]+=1;
-          map->int_matrix[y][x+1]-=1; 
-
-          // per i caratteri memorizzo i bordi
-          if (x > x_max)
-            x_max = x;
-          if (y > y_max)
-            y_max = y;
-          if (x < x_min)
-            x_min = x;
-          if (y < y_min)
-            y_min = y;
+          if (x == MAX)
+            can_move = false;
+          else if (map->int_matrix[y][x] > 0)
+            can_move = false;
         }
-        for (i = x_min; i <= x_max + 1; i++) {
-          for (j = y_min; j <= y_max; j++) {
-            if (map->int_matrix[j][i] == -1) {
-              map->char_matrix[j][i] = colour;
-              draw_Tile(i, j, colour);
-            }
-            else if (map->int_matrix[j][i] == 0) {
-              map->char_matrix[j][i] = 0x0000;
-              draw_Tile(i, j, 0x0000);
-            }
-              // UPDATE PIXELS
+        if (can_move) {
+          // noInterrupts()
+          for (i = 0; i < nr_tiles; i++) {
+            // ottengo coordinate della casella
+            x = map->moving_Piece.tiles[i].x;
+            y = map->moving_Piece.tiles[i].y;
+
+            // muovo caselle di Piece
+            map->moving_Piece.tiles[i].x++;
+
+            // muovo valori di int_matrix (sottraggo e aggiungo per modificare i valori per non sovrascrivere)
+            map->int_matrix[y][x] += 1;
+            map->int_matrix[y][x + 1] -= 1;
+
+            // per i caratteri memorizzo i bordi
+            if (x > x_max)
+              x_max = x;
+            if (y > y_max)
+              y_max = y;
+            if (x < x_min)
+              x_min = x;
+            if (y < y_min)
+              y_min = y;
           }
+          for (i = x_min; i <= x_max + 1; i++) {
+            for (j = y_min; j <= y_max; j++) {
+              if (map->int_matrix[j][i] == -1) {
+                map->char_matrix[j][i] = colour;
+                draw_Tile(i, j, colour);
+              }
+              else if (map->int_matrix[j][i] == 0) {
+                map->char_matrix[j][i] = 0x0000;
+                draw_Tile(i, j, 0x0000);
+              }
+              // UPDATE PIXELS
+            }
+          }
+          map->moving_Piece.center_x++;
+          // interrupts()
         }
-        map->moving_Piece.center_x++;
-        // interrupts()
-      }
-    } break;
+      } break;
     case 1: { // L
-      // check if we can move
-      for (i = 0; i < nr_tiles; ++i) {
-        x = map->moving_Piece.tiles[i].x - 1;
-        y = map->moving_Piece.tiles[i].y;
-        if (x < 0)
-          can_move = false;
-        else if (map->int_matrix[y][x] > 0)
-          can_move = false;
-      }
-      if (can_move) {
-       // noInterrupts()
-        for (i = 0; i < nr_tiles; i++) {
-          // ottengo coordinate della casella
-          x = map->moving_Piece.tiles[i].x;
+        // check if we can move
+        for (i = 0; i < nr_tiles; ++i) {
+          x = map->moving_Piece.tiles[i].x - 1;
           y = map->moving_Piece.tiles[i].y;
-
-          // muovo caselle di Piece
-          map->moving_Piece.tiles[i].x--;
-
-          // muovo valori di int_matrix (sottraggo e aggiungo per modificare i valori per non sovrascrivere)
-          map->int_matrix[y][x]+=1;
-          map->int_matrix[y][x-1]-=1; 
-
-          // per i caratteri memorizzo i bordi
-          if (x > x_max)
-            x_max = x;
-          if (y > y_max)
-            y_max = y;
-          if (x < x_min)
-            x_min = x;
-          if (y < y_min)
-            y_min = y;
+          if (x < 0)
+            can_move = false;
+          else if (map->int_matrix[y][x] > 0)
+            can_move = false;
         }
-        for (i = x_min - 1; i <= x_max; i++) {
-          for (j = y_min; j <= y_max; j++) {
-            if (map->int_matrix[j][i] == -1) {
-              map->char_matrix[j][i] = colour;
-              draw_Tile(i, j, colour);
-            }
-            else if (map->int_matrix[j][i] == 0) {
-              map->char_matrix[j][i] = 0x0000;
-              draw_Tile(i, j, 0x0000);
-            }
+        if (can_move) {
+          // noInterrupts()
+          for (i = 0; i < nr_tiles; i++) {
+            // ottengo coordinate della casella
+            x = map->moving_Piece.tiles[i].x;
+            y = map->moving_Piece.tiles[i].y;
+
+            // muovo caselle di Piece
+            map->moving_Piece.tiles[i].x--;
+
+            // muovo valori di int_matrix (sottraggo e aggiungo per modificare i valori per non sovrascrivere)
+            map->int_matrix[y][x] += 1;
+            map->int_matrix[y][x - 1] -= 1;
+
+            // per i caratteri memorizzo i bordi
+            if (x > x_max)
+              x_max = x;
+            if (y > y_max)
+              y_max = y;
+            if (x < x_min)
+              x_min = x;
+            if (y < y_min)
+              y_min = y;
+          }
+          for (i = x_min - 1; i <= x_max; i++) {
+            for (j = y_min; j <= y_max; j++) {
+              if (map->int_matrix[j][i] == -1) {
+                map->char_matrix[j][i] = colour;
+                draw_Tile(i, j, colour);
+              }
+              else if (map->int_matrix[j][i] == 0) {
+                map->char_matrix[j][i] = 0x0000;
+                draw_Tile(i, j, 0x0000);
+              }
               // UPDATE PIXELS
+            }
           }
+          map->moving_Piece.center_x--;
+          // interrupts()
         }
-        map->moving_Piece.center_x--;
-        // interrupts()
-      }
-    } break;
+      } break;
     case 2: { // D
-      // check if we can move
-      for (i = 0; i < nr_tiles; ++i) {
-        x = map->moving_Piece.tiles[i].x;
-        y = map->moving_Piece.tiles[i].y + 1;
-        if (y == MAX) {
-          can_move = false;
-        } else if (map->int_matrix[y][x] > 0)
-          can_move = false;
-      }
-      if (can_move) {
-       // noInterrupts()
-        for (i = 0; i < nr_tiles; i++) {
-          // ottengo coordinate della casella
+        // check if we can move
+        for (i = 0; i < nr_tiles; ++i) {
           x = map->moving_Piece.tiles[i].x;
-          y = map->moving_Piece.tiles[i].y;
-
-          // muovo caselle di Piece
-          map->moving_Piece.tiles[i].y++;
-
-          // muovo valori di int_matrix (sottraggo e aggiungo per modificare i valori per non sovrascrivere)
-          map->int_matrix[y][x]+=1;
-          map->int_matrix[y+1][x]-=1; 
-
-          // per i caratteri memorizzo i bordi
-          if (x > x_max)
-            x_max = x;
-          if (y > y_max)
-            y_max = y;
-          if (x < x_min)
-            x_min = x;
-          if (y < y_min)
-            y_min = y;
+          y = map->moving_Piece.tiles[i].y + 1;
+          if (y == MAX) {
+            can_move = false;
+          } else if (map->int_matrix[y][x] > 0)
+            can_move = false;
         }
-        for (i = x_min; i <= x_max; i++) {
-          for (j = y_min; j <= y_max + 1; j++) {
-            if (map->int_matrix[j][i] == -1) {
-              map->char_matrix[j][i] = colour;
-              draw_Tile(i, j, colour);
-            }
-            else if (map->int_matrix[j][i] == 0) {
-              map->char_matrix[j][i] = 0x0000;
-              draw_Tile(i, j, 0x0000);
-            }
-            // UPDATE PIXELS
+        if (can_move) {
+          // noInterrupts()
+          for (i = 0; i < nr_tiles; i++) {
+            // ottengo coordinate della casella
+            x = map->moving_Piece.tiles[i].x;
+            y = map->moving_Piece.tiles[i].y;
+
+            // muovo caselle di Piece
+            map->moving_Piece.tiles[i].y++;
+
+            // muovo valori di int_matrix (sottraggo e aggiungo per modificare i valori per non sovrascrivere)
+            map->int_matrix[y][x] += 1;
+            map->int_matrix[y + 1][x] -= 1;
+
+            // per i caratteri memorizzo i bordi
+            if (x > x_max)
+              x_max = x;
+            if (y > y_max)
+              y_max = y;
+            if (x < x_min)
+              x_min = x;
+            if (y < y_min)
+              y_min = y;
           }
+          for (i = x_min; i <= x_max; i++) {
+            for (j = y_min; j <= y_max + 1; j++) {
+              if (map->int_matrix[j][i] == -1) {
+                map->char_matrix[j][i] = colour;
+                draw_Tile(i, j, colour);
+              }
+              else if (map->int_matrix[j][i] == 0) {
+                map->char_matrix[j][i] = 0x0000;
+                draw_Tile(i, j, 0x0000);
+              }
+              // UPDATE PIXELS
+            }
+          }
+          map->moving_Piece.center_y++;
+          map->points += POINTS_FOR_FALL;
+          // interrupts()
+        } else { // cant move, kill the piece
+          return kill_Piece(map);
         }
-        map->moving_Piece.center_y++;
-        map->points+=POINTS_FOR_FALL;
-        // interrupts()
-      } else { // cant move, kill the piece
-        return kill_Piece(map);
-      }
-    } break;
+      } break;
     default: break;
   }
   return 0;
 }
 
+/*
+ *  The function make fall the moving Piece until it cannot fall more, the points are doubled
+ */
 uint8_t choke_Piece(Map* map) {
-  int8_t y_max = -1, y_min = 10;
-  int8_t first, y, i;
-  for (i = 0; i < map->moving_Piece.nr_tiles; i++) {
-    y = map->moving_Piece.tiles[i].y;
-    if (y > y_max)
-      y_max = y;
-    if (y < y_min)
-      y_min = y;
-  }
+  uint32_t point = 0;
+  bool ended = false;
 
-  // check for bond and save the piece into the matrix (when is it moving is saved as -1)
-  save_bond(map);
+  bool can_move = true;
+  int8_t x, y, x_max = -1, x_min = 100, y_max = -1, y_min = 100;
+  uint8_t i, j, nr_tiles;
+  uint16_t colour;
 
-  for (i = y_max; i >= y_min; i--) {
-    fall_row(map, i);
-  }
-  map->points += POINTS_FOR_FASTFALL;
-  
-  // check for complete row if so delete row and make upper row falling dowm. Check until nothing is moved for 1 cycle;
-  bool moved = true;
-  while (moved) {
-    moved = false;
-    for (i = 0; i < MAX_COLUMNS; i++) {
-      if (map->row_occupation[i] == 10) {
-        delete_row(map, i);
-        moved = true;
-        first = i;
-      }
+  nr_tiles = map->moving_Piece.nr_tiles;
+  colour = map->moving_Piece.colour;
+
+  while (!ended) {
+    // check if we can move
+    for (i = 0; i < nr_tiles; ++i) {
+      x = map->moving_Piece.tiles[i].x;
+      y = map->moving_Piece.tiles[i].y + 1;
+      if (y == MAX) {
+        can_move = false;
+      } else if (map->int_matrix[y][x] > 0)
+        can_move = false;
     }
-    if (moved) {
-      for (i = first; i >= 0; i--) {
-        fall_row(map, i);
+    if (can_move) {
+      // noInterrupts()
+      for (i = 0; i < nr_tiles; i++) {
+        // ottengo coordinate della casella
+        x = map->moving_Piece.tiles[i].x;
+        y = map->moving_Piece.tiles[i].y;
+
+        // muovo caselle di Piece
+        map->moving_Piece.tiles[i].y++;
+
+        // muovo valori di int_matrix (sottraggo e aggiungo per modificare i valori per non sovrascrivere)
+        map->int_matrix[y][x] += 1;
+        map->int_matrix[y + 1][x] -= 1;
+
+        // per i caratteri memorizzo i bordi
+        if (x > x_max)
+          x_max = x;
+        if (y > y_max)
+          y_max = y;
+        if (x < x_min)
+          x_min = x;
+        if (y < y_min)
+          y_min = y;
       }
+      map->moving_Piece.center_y++;
+      point += POINTS_FOR_FALL;
+      // interrupts()
+    } else { // cant move, kill the piece
+      ended = true;
+    }
+  };
+  for (i = x_min; i <= x_max; i++) {
+    for (j = y_min; j <= y_max + 1; j++) {
+      if (map->int_matrix[j][i] == -1) {
+        map->char_matrix[j][i] = colour;
+        draw_Tile(i, j, colour);
+      }
+      else if (map->int_matrix[j][i] == 0) {
+        map->char_matrix[j][i] = 0x0000;
+        draw_Tile(i, j, 0x0000);
+      }
+      // UPDATE PIXELS
     }
   }
-
-  // add the new Piece
-  return new_Piece(map, (Shape) 0);
+  map->points += (point * 2);
+  return kill_Piece(map);
 }
 
 void start_game(Map* map) {
@@ -1152,9 +1184,9 @@ void start_game(Map* map) {
   new_Piece(map, (Shape) 0);
 }
 /*
-void start_game(Map* map);
-uint8_t move_Piece(Map* map, Direction direction);
-void rotate_Piece(Map* map);
+  void start_game(Map* map);
+  uint8_t move_Piece(Map* map, Direction direction);
+  void rotate_Piece(Map* map);
 */
 
 //#endif /* __TETRIS_H__ */
